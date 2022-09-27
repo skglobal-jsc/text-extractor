@@ -1,0 +1,65 @@
+{
+  "name": "@sk-global/text-extractor",
+  "description": "A text extractor for extracting text from HTML, PDF, Image and other files.",
+  "version": "0.0.1",
+  "source": "src/index.ts",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.modern.module.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/**.js*",
+    "dist/**/*.ts"
+  ],
+  "engines": {
+    "node": ">=14.16"
+  },
+  "scripts": {
+    "build": "microbundle --define PKG_VERSION=$npm_package_version",
+    "watch": "microbundle watch --define PKG_VERSION=$npm_package_version",
+    "test": "jest --coverage",
+    "lint": "prettier src test -c",
+    "format": "prettier src test --write",
+    "prepack": "rm -rf dist && npm run build",
+    "release": "npm run prepack && source .env && npx np"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.31",
+    "@types/content-type": "^1.1.5",
+    "@types/html-to-text": "^8.1.1",
+    "@types/jest": "^29.0.3",
+    "@types/pdf-parse": "^1.1.1",
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "jest": "^29.0.3",
+    "microbundle": "^0.15.0",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.0.1",
+    "ts-node": "^10.9.1"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "directories": {
+    "test": "__tests__"
+  },
+  "author": "SK-Global",
+  "dependencies": {
+    "content-type": "^1.0.4",
+    "detect-file-type": "^0.2.8",
+    "html-to-text": "^8.2.1",
+    "iconv-lite": "^0.6.3",
+    "pdf-parse": "^1.1.1",
+    "tesseract.js": "^3.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skglobal-jsc/text-extractor"
+  }
+}
