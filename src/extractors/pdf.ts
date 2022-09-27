@@ -1,10 +1,8 @@
-import * as pdf from 'pdf-parse';
+// import * as pdf from 'pdf-parse';
+const pdf = require('pdf-parse');
 
 const extractText = async (data: Buffer, _mimeType: string, opt: any = {}) => {
-  const options: pdf.Options = {
-    ...opt,
-  };
-  const res = await pdf(data, options);
+  const res = await pdf(data);
   if (res) {
     return res.text;
   }

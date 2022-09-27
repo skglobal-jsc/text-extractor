@@ -3,8 +3,8 @@ import { fromUrl, fromBufferWithMimeType, fromBuffer } from '../src/index';
 import * as path from 'path';
 import * as fs from 'fs';
 
-describe.skip('must crawl fromUrl correct', function () {
-  it('should set error when url is not found', async function () {
+describe('must crawl fromUrl correct', function () {
+  it.skip('should set error when url is not found', async function () {
     let url = 'https://www.google.com/404';
     try {
       await fromUrl(url);
@@ -23,7 +23,7 @@ describe.skip('must crawl fromUrl correct', function () {
     expect(res).not.toBe('');
   });
 
-  it('should get data when url is html', async function () {
+  it.skip('should get data when url is html', async function () {
     let url =
       'https://www.city.fukuoka.lg.jp/hofuku/coronavaccine/omicron_wakutin.html';
     const res = await fromUrl(url);
@@ -62,9 +62,8 @@ describe.skip('fromBuffer must work correct', () => {
   });
 });
 
-describe.skip('test doc, docx mimetype', () => {});
 
-describe('test image', () => {
+describe.skip('test image', () => {
   it('should detect text from local image', async () => {
     let file = fs.readFileSync(path.join(__dirname, 'sample.png'));
     const res = await fromBuffer(file);
