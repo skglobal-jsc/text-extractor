@@ -17,17 +17,26 @@ npm install @sk-global/text-extractor
 
 ## Usage
 
+CommonJS
+
 ```js
 const { fromUrl, fromBufferWithMimeType, fromBuffer } = require('@sk-global/text-extractor');
 
 // fromUrl
-const text = await fromUrl('https://www.google.com', { timeout: 10000 });
+const text = await fromUrl('https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/d6cfdcdd-75e4-460c-9ec0-af4f952e03d5/20210906_meeting_promoting_01.pdf');
 
 // fromBufferWithMimeType
 const text = await fromBufferWithMimeType(buffer, 'image/png');
 
 // fromBuffer
 const text = await fromBuffer(buffer);
+```
+
+ES6
+
+```js
+import { fromUrl, fromBufferWithMimeType, fromBuffer } from '@sk-global/text-extractor';
+
 ```
 
 ## Roadmap
