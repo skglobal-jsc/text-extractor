@@ -19,20 +19,25 @@ const fromBuffer = async (data: Buffer, opt: any = {}): Promise<string> => {
   return text;
 };
 
-const fromUrl = async (
-  current_url: string,
-  opt?: AxiosRequestConfig
-): Promise<string> => {
+const fromUrl = async ({
+  url,
+  option = {}, // text extraction option.
+  config = {}, // axios config
+}: {
+  url: string;
+  option?: any;
+  config?: AxiosRequestConfig;
+}): Promise<string> => {
   const instance = axios.create();
 
   let requestConfig: AxiosRequestConfig = {
-    url: current_url,
+    url: url,
     method: 'get',
     baseURL: '',
     transformResponse: [
       async (data: any, headers: any) => {
         const typeStr = headers['content-type'];
-        const text = await fromBufferWithMimeType(data, typeStr);
+        const text = await fromBufferWithMimeType(data, typeStr, option);
         return text;
       },
     ],
@@ -48,7 +53,7 @@ const fromUrl = async (
       return status >= 200 && status < 300;
     },
     maxRedirects: 5,
-    ...opt,
+    ...config,
     responseType: 'arraybuffer', //'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
     maxContentLength: 20000000,
   };
