@@ -1,8 +1,18 @@
 // import * as pdf from 'pdf-parse';
 const pdf = require('pdf-parse');
 
-const extractText = async (data: Buffer, _mimeType: string, opt: any = {}) => {
-  const res = await pdf(data);
+interface PdfParseOptions {
+  max?: number;
+}
+
+const extractText = async (
+  data: Buffer,
+  _mimeType: string,
+  opt: PdfParseOptions = {
+    max: 0, // 0 means no limit
+  }
+) => {
+  const res = await pdf(data, opt);
   if (res) {
     return res.text;
   }
