@@ -36,8 +36,7 @@ const fromUrl = async ({
     baseURL: '',
     transformResponse: [
       async (data: any, headers: any) => {
-        const typeStr = headers['content-type'];
-        const text = await fromBufferWithMimeType(data, typeStr, option);
+        const text = await fromBuffer(data, option);
         return text;
       },
     ],

@@ -32,6 +32,9 @@ const extractText = async (
     hideLinkHrefIfSameAsText: true,
     ignoreHref: true,
     uppercaseHeadings: false,
+    baseElements: {
+      selectors: ['body'],
+    },
   }
 ) => {
   const html = decodeBufferIfNecessary(data, mimeType);
