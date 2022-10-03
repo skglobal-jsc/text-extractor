@@ -26,7 +26,16 @@ describe('must crawl fromUrl correct', function () {
   it('should get data when url is html', async function () {
     let url =
       'https://vnexpress.net/3-canh-sat-danh-thieu-nien-bi-tuoc-danh-hieu-cong-an-nhan-dan-4517610.html';
-    const res = await fromUrl({ url });
+    const opt = {
+      ignoreImage: true,
+      preserveNewlines: true,
+      wordwrap: false,
+      uppercaseHeadings: false,
+      hideLinkHrefIfSameAsText: true,
+      baseElements: { selectors: ['p'] },
+      ignoreHref: true,
+    };
+    const res = await fromUrl({ url, option: opt });
     console.log(res);
     expect(res).not.toBe('');
   });
