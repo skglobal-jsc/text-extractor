@@ -51,7 +51,7 @@
   "dependencies": {
     "content-type": "^1.0.4",
     "detect-file-type": "^0.2.8",
-    "html-to-text": "^8.2.1",
+    "html-to-text": "^9.0.2",
     "iconv-lite": "^0.6.3",
     "pdf-parse": "^1.1.1",
     "tesseract.js": "^3.0.3",
