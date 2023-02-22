@@ -9,16 +9,18 @@ import { detectFileTypeByBuffer } from './utils';
  * @param text
  */
 const cleanText = (text: string): string => {
-  return (
-    text
-      .replace(/ /g, '')
-      .replace(/\t/g, '')
-      .replace(/\r|\r\n/g, '\n')
-      .replace(/\n{3,}/g, '\n\n')
-      // .replace(/(?<=[^\n。！？])\n(?=[^\n。！？])/g, '') // 文章中の改行を削除
-      .replace(/([^\n。」])\n([^\n])/g, '$1$2') // 文章中の改行を削除
-      .replace(/、\n/g, '、') // 読点の後の改行を削除
-  );
+  // return (
+  //   text
+  //     .replace(/ /g, '')
+  //     .replace(/\t/g, '')
+  //     .replace(/\r|\r\n/g, '\n')
+  //     .replace(/\n{3,}/g, '\n\n')
+  //     // .replace(/(?<=[^\n。！？])\n(?=[^\n。！？])/g, '') // 文章中の改行を削除
+  //     .replace(/([^\n。」])\n([^\n])/g, '$1$2') // 文章中の改行を削除
+  //     .replace(/、\n/g, '、') // 読点の後の改行を削除
+  // );
+
+  return text;
 };
 
 const fromBufferWithMimeType = async (
