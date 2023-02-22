@@ -28,13 +28,15 @@ const fromBufferWithMimeType = async (
   opt: ExtractOption = {}
 ): Promise<string> => {
   let text = await extract(data, mimeType, opt);
-  if (opt.cleanText) {
-    text = cleanText(text);
-  }
+  // clean text
+  text = cleanText(text);
   return text;
 };
 
-const fromBuffer = async (data: Buffer, opt: ExtractOption = {}): Promise<string> => {
+const fromBuffer = async (
+  data: Buffer,
+  opt: ExtractOption = {}
+): Promise<string> => {
   const mimeType = await detectFileTypeByBuffer(data);
   const text = await fromBufferWithMimeType(data, mimeType.mime, opt);
   return text;
