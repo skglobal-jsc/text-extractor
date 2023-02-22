@@ -6,7 +6,7 @@ A text extractor for extracting text from HTML, PDF, Image and other files.
 
 * HTML, use [html-to-text](https://www.npmjs.com/package/html-to-text)
 * PDF, use [pdf-parse](https://gitlab.com/autokent/pdf-parse)
-* Image (PNG, JPEG, GIF, BMP, TIFF, ICO, SVG). Use tesseract.js for OCR.
+* Image (PNG, JPEG, GIF, BMP, TIFF, ICO, SVG). Use [tesseract.js](https://github.com/naptha/tesseract.js#tesseractjs) for OCR.
 * ... and more to come
 
 ## Installation
