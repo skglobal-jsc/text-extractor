@@ -2,27 +2,6 @@ import { htmlToText, HtmlToTextOptions } from 'html-to-text';
 import { encodingExists, decode } from 'iconv-lite';
 import { parse } from 'content-type';
 
-const default_html_to_text_options: HtmlToTextOptions = {
-  baseElements: {
-    selectors: ['.wb-contents'],
-  },
-  selectors: [
-    {
-      selector: 'table',
-      format: 'dataTable',
-      options: { uppercaseHeaderCells: false },
-    },
-  ],
-  wordwrap: false,
-  ignoreImage: true,
-  preserveNewlines: true,
-  hideLinkHrefIfSameAsText: true,
-  ignoreHref: true,
-
-  uppercaseHeadings: false,
-  formatters: {},
-};
-
 const decodeBufferIfNecessary = (data: Buffer, mimeType: string) => {
   let charset = 'none';
   const typeObj = parse(mimeType);
@@ -43,13 +22,22 @@ const decodeBufferIfNecessary = (data: Buffer, mimeType: string) => {
   }
 };
 
-const extractText = async (data: Buffer, mimeType: string, opt: any = {}) => {
+const extractText = async (
+  data: Buffer,
+  mimeType: string,
+  options: HtmlToTextOptions = {
+    wordwrap: false,
+    ignoreImage: true,
+    preserveNewlines: true,
+    hideLinkHrefIfSameAsText: true,
+    ignoreHref: true,
+    uppercaseHeadings: false,
+    baseElements: {
+      selectors: ['body'],
+    },
+  }
+) => {
   const html = decodeBufferIfNecessary(data, mimeType);
-
-  const options: HtmlToTextOptions = {
-    ...default_html_to_text_options,
-    ...opt,
-  };
   return htmlToText(html, options);
 };
 

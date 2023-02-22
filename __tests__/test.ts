@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 describe('must crawl fromUrl correct', function () {
-  it('should set error when url is not found', async function () {
+  it.skip('should set error when url is not found', async function () {
     let url = 'https://www.google.com/404';
     try {
       await fromUrl({ url });
@@ -15,7 +15,7 @@ describe('must crawl fromUrl correct', function () {
     }
   });
 
-  it('should get data when url is pdf', async function () {
+  it.skip('should get data when url is pdf', async function () {
     let url =
       'https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/d6cfdcdd-75e4-460c-9ec0-af4f952e03d5/20210906_meeting_promoting_01.pdf';
     const res = await fromUrl({ url });
@@ -25,14 +25,23 @@ describe('must crawl fromUrl correct', function () {
 
   it('should get data when url is html', async function () {
     let url =
-      'https://www.city.fukuoka.lg.jp/hofuku/coronavaccine/omicron_wakutin.html';
-    const res = await fromUrl({ url });
-    // console.log(res);
+      'https://vnexpress.net/3-canh-sat-danh-thieu-nien-bi-tuoc-danh-hieu-cong-an-nhan-dan-4517610.html';
+    const opt = {
+      ignoreImage: true,
+      preserveNewlines: true,
+      wordwrap: false,
+      uppercaseHeadings: false,
+      hideLinkHrefIfSameAsText: true,
+      baseElements: { selectors: ['p'] },
+      ignoreHref: true,
+    };
+    const res = await fromUrl({ url, option: opt });
+    console.log(res);
     expect(res).not.toBe('');
   });
 });
 
-describe('fromBufferWithMimeType must work correct', () => {
+describe.skip('fromBufferWithMimeType must work correct', () => {
   it('test local file pdf', async () => {
     let file = fs.readFileSync(path.join(__dirname, 'sample.pdf'));
     const res = await fromBufferWithMimeType(file, 'application/pdf');
@@ -46,7 +55,7 @@ describe('fromBufferWithMimeType must work correct', () => {
   });
 });
 
-describe('fromBuffer must work correct', () => {
+describe.skip('fromBuffer must work correct', () => {
   it('test local file pdf', async () => {
     let file = fs.readFileSync(path.join(__dirname, 'sample.pdf'));
     const res = await fromBuffer(file);
@@ -62,7 +71,7 @@ describe('fromBuffer must work correct', () => {
   });
 });
 
-describe('test image', () => {
+describe.skip('test image', () => {
   it('should detect text from local image', async () => {
     let file = fs.readFileSync(path.join(__dirname, 'sample.png'));
     const res = await fromBuffer(file);

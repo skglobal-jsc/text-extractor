@@ -1,9 +1,14 @@
 import { createWorker } from 'tesseract.js';
 
+
+interface ImageParseOptions {
+  lang: string;
+}
+
 const extractText = async (
   data: Buffer,
   _mimeType: string,
-  options: any = {
+  options: ImageParseOptions = {
     lang: 'eng',
   }
 ) => {

@@ -1,7 +1,7 @@
 {
   "name": "@sk-global/text-extractor",
   "description": "A text extractor for extracting text from HTML, PDF, Image and other files.",
-  "version": "0.1.1",
+  "version": "0.1.23",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
