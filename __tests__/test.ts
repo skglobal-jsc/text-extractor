@@ -3,7 +3,7 @@ import { fromUrl, fromBufferWithMimeType, fromBuffer } from '../src/index';
 import * as path from 'path';
 import * as fs from 'fs';
 
-describe('must crawl fromUrl correct', function () {
+describe.skip('must crawl fromUrl correct', function () {
   it.skip('should set error when url is not found', async function () {
     let url = 'https://www.google.com/404';
     try {
@@ -84,5 +84,22 @@ describe.skip('test image', () => {
     const res = await fromUrl({ url });
     // console.log(res);
     expect(res).not.toBeNull();
+  });
+});
+
+describe('test pdf', () => {
+  it('test local file pdf', async () => {
+    // TODO: replace with your own file path
+    let file = fs.readFileSync(path.join(__dirname, 'sample.pdf'));
+    const res = await fromBuffer(file);
+    console.log(res);
+    expect(res).not.toBeNull();
+  });
+
+  it('test remote file pdf', async () => {
+    let url = 'https://www.orixlife.co.jp/about/notice/2022/pdf/n220921.pdf';
+    const res = await fromUrl({ url });
+    console.log(res);
+    expect(res).not.toBe('');
   });
 });

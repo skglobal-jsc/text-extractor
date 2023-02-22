@@ -4,28 +4,27 @@ import extract from './extractors';
 
 import { detectFileTypeByBuffer } from './utils';
 
-export interface ExtractOption {
-  cleanText?: boolean;
-}
-
 /**
  * This function is used to clean the text extracted from the pdf file.
  * @param text
  */
 const cleanText = (text: string): string => {
-  return text
-    .replace(/ /g, '') // remove all spaces
-    .replace(/\t/g, '') // remove all tabs
-    .replace(/\r|\r\n/g, '\n') // remove all carriage returns and line feeds and replace with \n only
-    .replace(/\n{3,}/g, '\n\n') // remove all multiple new lines and replace with 2 new lines
-    .replace(/(?<=[^\n。！？])\n(?=[^\n。！？])/g, '') // remove all new lines between characters
-    .replace(/、\n/g, '、'); // remove all new lines between characters and replace with comma only
+  return (
+    text
+      .replace(/ /g, '')
+      .replace(/\t/g, '')
+      .replace(/\r|\r\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      // .replace(/(?<=[^\n。！？])\n(?=[^\n。！？])/g, '') // 文章中の改行を削除
+      .replace(/([^\n。」])\n([^\n])/g, '$1$2') // 文章中の改行を削除
+      .replace(/、\n/g, '、') // 読点の後の改行を削除
+  );
 };
 
 const fromBufferWithMimeType = async (
   data: Buffer,
   mimeType: string,
-  opt: ExtractOption = {}
+  opt: any = {}
 ): Promise<string> => {
   let text = await extract(data, mimeType, opt);
   // clean text
@@ -33,10 +32,7 @@ const fromBufferWithMimeType = async (
   return text;
 };
 
-const fromBuffer = async (
-  data: Buffer,
-  opt: ExtractOption = {}
-): Promise<string> => {
+const fromBuffer = async (data: Buffer, opt: any = {}): Promise<string> => {
   const mimeType = await detectFileTypeByBuffer(data);
   const text = await fromBufferWithMimeType(data, mimeType.mime, opt);
   return text;
@@ -48,7 +44,7 @@ const fromUrl = async ({
   config = {}, // axios config
 }: {
   url: string;
-  option?: ExtractOption;
+  option?: any;
   config?: AxiosRequestConfig;
 }): Promise<string> => {
   const instance = axios.create();
