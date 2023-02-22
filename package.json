@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.31",
     "@types/content-type": "^1.1.5",
-    "@types/html-to-text": "^8.1.1",
+    "@types/html-to-text": "^9.0.0",
     "@types/jest": "^29.0.3",
     "@types/pdf-parse": "^1.1.1",
     "cheerio": "^1.0.0-rc.12",
@@ -51,7 +51,7 @@
   "dependencies": {
     "content-type": "^1.0.4",
     "detect-file-type": "^0.2.8",
-    "html-to-text": "^8.2.1",
+    "html-to-text": "^9.0.4",
     "iconv-lite": "^0.6.3",
     "pdf-parse": "^1.1.1",
     "tesseract.js": "^3.0.3",
